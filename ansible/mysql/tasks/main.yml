@@ -59,3 +59,8 @@
   
 - name: delete rmp of MySQL
   file: path=/opt/mysql.rpm state=absent
+  
+  # bug: expared password
+- name: update root password
+  command: >
+    mysqladmin -u root password {{ mysql_root_new_password }}
