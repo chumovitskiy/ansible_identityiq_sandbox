@@ -1,0 +1,10 @@
+---
+
+- name: install utils
+  yum: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - wget
+    - net-tools
+    - unzip
+- name: update hostname
+  hostname: name=identityIQ

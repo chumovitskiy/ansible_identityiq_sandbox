@@ -1,0 +1,18 @@
+---
+
+- name: install tomcat
+  yum: name={{ item }} update_cache=yes state=latest
+  with_items:
+    - tomcat
+    - tomcat-webapps
+    - tomcat-admin-webapps
+- name: configure java options
+  copy: src=../files/tomcat.conf dest=/usr/share/tomcat/conf/tomcat.conf owner=root group=tomcat
+- name: configure administartor in tomcat
+  copy: src=../files/tomcat-users.xml dest=/usr/share/tomcat/conf/tomcat-users.xml owner=root group=tomcat
+- name: clear examples
+  shell: /bin/rm -rf /usr/share/tomcat/webapps/examples
+- name: clear sample
+  shell: /bin/rm -rf /usr/share/tomcat/webapps/sample
+- name: start tomcat
+  systemd: name=tomcat enabled=yes state=started

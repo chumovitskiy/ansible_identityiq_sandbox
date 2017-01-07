@@ -1,0 +1,34 @@
+---
+- name: create directory identityiq
+  file: path=/usr/share/tomcat/webapps/identityiq state=directory
+  
+- name: unpack war file
+  unarchive: src=../files/identityiq.war dest=/usr/share/tomcat/webapps/identityiq remote_src=no
+  
+- name: update sql-script
+  copy: src=../files/create.mysql dest=/usr/share/tomcat/webapps/identityiq/WEB-INF/database/create_identityiq_tables-7.0.mysql owner=tomcat group=tomcat
+  
+  # replace password in file
+  
+  # bug: expared password
+- name: update root password
+  command: >
+    mysqladmin -u root password {{ mysql_root_new_password }}
+  ignore_errors: yes
+  
+- name: create database 
+  shell: mysql -u root --password={{ mysql_root_new_password }} < /usr/share/tomcat/webapps/identityiq/WEB-INF/database/create_identityiq_tables-7.0.mysql > /usr/share/tomcat/webapps/identityiq/WEB-INF/database/mysql.out
+  ignore_errors: yes
+
+- name: update connect to database
+  copy: src=../files/iiq.properties dest=/usr/share/tomcat/webapps/identityiq/WEB-INF/classes/iiq.properties owner=tomcat group=tomcat
+  # replace password in file
+  
+# - name: change permissions iiq
+#   file: path=/usr/share/tomcat/webapps/identityiq/WEB-INF/bin/iiq mode="u=rwx,g=r"
+#   ignore_errors: yes  
+  
+# ./iiq console -j -c import init.xml -f out.log
+
+- name: restart tomcat
+  systemd: name=tomcat state=restarted

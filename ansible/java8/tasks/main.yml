@@ -1,0 +1,9 @@
+---
+
+- name: preparation to install java
+  copy: src=../files/jdk-8u111-linux-x64.rpm dest=/opt/jdk8.rpm owner=root group=root
+  
+- name: install java
+  yum: name=/opt/jdk8.rpm state=present validate_certs=no
+  
+  # delete rpm
