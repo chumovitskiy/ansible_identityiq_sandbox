@@ -2,7 +2,7 @@
 
 - name: preparation to install java
 #  copy: src=../files/jdk-8u111-linux-x64.rpm dest=/opt/jdk8.rpm owner=root group=root
-  get_url: src=http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jdk-8u111-linux-x64.rpm dest=/opt/jdk8.rpm
+  get_url: src=http://download.oracle.com/otn-pub/java/jdk/8u111-b14/jdk-8u111-linux-x64.rpm dest=/opt/jdk8.rpm headers='Cookie:oraclelicense=accept-securebackup-cookie'
   
 - name: install java
   yum: name=/opt/jdk8.rpm state=present validate_certs=no
