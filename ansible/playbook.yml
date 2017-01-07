@@ -5,7 +5,7 @@
   gather_facts: no
   roles:
     - prepare
-    #- mysql
+    - mysql
     - java8
-    #- tomcat
-    #- identityIQ
+    - tomcat
+    - identityIQ

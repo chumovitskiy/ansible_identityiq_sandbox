@@ -1,7 +1,7 @@
 ---
 
 - name: preparation to install MySQL
-  copy: src=../files/mysql57-community-release-el7-9.noarch.rpm dest=/opt/mysql.rpm owner=root group=root
+  get_url: url={{ mysql_url_rep dest }} dest=/opt/mysql.rpm
   
 - name: add MySQL repository
   yum: name=/opt/mysql.rpm state=present validate_certs=no
@@ -57,4 +57,5 @@
   mysql_db: db=test state=absent
   ignore_errors: yes
   
-  #delete rpm
+- name: delete rmp of MySQL
+  file: path=/opt/mysql.rpm state=absent
