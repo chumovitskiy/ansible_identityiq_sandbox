@@ -1,1 +1,3 @@
 ansible/identityIQ/files/identityiq.war
+.vagrant/*
+ansible/playbook.retry
