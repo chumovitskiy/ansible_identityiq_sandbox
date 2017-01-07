@@ -44,14 +44,14 @@ except:
 - заменить rpm из files на скачку из репозитория
 - убрать ignore_errors
 
-java8
+## java8
 - заменить rpm из files на скачку из репозитория
 - удалить rpm после установки
 
-tomcat
+## tomcat
 - перейти на 8 версию
 
-identityIQ
+## identityIQ
 - заменить файлы конфигурации на шаблоны
 - вынести смену пароля из identityIQ в mysql
 - сделать импорт iiq
