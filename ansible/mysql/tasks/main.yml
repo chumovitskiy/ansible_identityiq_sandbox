@@ -1,7 +1,7 @@
 ---
 
 - name: preparation to install MySQL
-  get_url: url={{ mysql_url_rep dest }} dest=/opt/mysql.rpm
+  get_url: url={{ mysql_url_rep }} dest=/opt/mysql.rpm
   
 - name: add MySQL repository
   yum: name=/opt/mysql.rpm state=present validate_certs=no
