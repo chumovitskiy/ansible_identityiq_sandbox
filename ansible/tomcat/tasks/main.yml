@@ -11,8 +11,8 @@
 - name: configure administartor in tomcat
   copy: src=../files/tomcat-users.xml dest=/usr/share/tomcat/conf/tomcat-users.xml owner=root group=tomcat
 - name: clear examples
-  file: /usr/share/tomcat/webapps/examples state=absent
+  file: path=/usr/share/tomcat/webapps/examples state=absent
 - name: clear sample
-  file: /usr/share/tomcat/webapps/sample state=absent
+  file: path=/usr/share/tomcat/webapps/sample state=absent
 - name: start tomcat
   systemd: name=tomcat enabled=yes state=started
