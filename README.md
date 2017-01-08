@@ -37,9 +37,9 @@ except:
 # TODO:
 
 ## tomcat
-- перейти на 8 версию
-- заменить файлы конфигурации на шаблоны
+- upgrade to ver. 8
+- change file to template
 
 ## identityIQ
-- заменить файлы конфигурации на шаблоны
-- сделать импорт iiq
+- change file to template
+- iiq import\expot in iiq
