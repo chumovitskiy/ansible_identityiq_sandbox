@@ -6,13 +6,13 @@
   unarchive: src=../files/identityiq.war dest=/usr/share/tomcat/webapps/identityiq remote_src=no
   
 - name: update sql-script
-  copy: src=../templates/create.mysql dest=/usr/share/tomcat/webapps/identityiq/WEB-INF/database/create_identityiq_tables-7.0.mysql owner=tomcat group=tomcat
+  template: src=../templates/create.mysql dest=/usr/share/tomcat/webapps/identityiq/WEB-INF/database/create_identityiq_tables-7.0.mysql owner=tomcat group=tomcat
   
 - name: create database 
   shell: mysql -u root --password={{ mysql_root_password }} < /usr/share/tomcat/webapps/identityiq/WEB-INF/database/create_identityiq_tables-7.0.mysql > /usr/share/tomcat/webapps/identityiq/WEB-INF/database/mysql.out
 
 - name: update connect to database
-  copy: src=../templates/iiq.properties dest=/usr/share/tomcat/webapps/identityiq/WEB-INF/classes/iiq.properties owner=tomcat group=tomcat
+  template: src=../templates/iiq.properties dest=/usr/share/tomcat/webapps/identityiq/WEB-INF/classes/iiq.properties owner=tomcat group=tomcat
   # replace password in file
   
 # - name: change permissions iiq
