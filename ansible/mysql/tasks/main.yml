@@ -13,24 +13,7 @@
     - mysql
     - mysql-server
   
-# update root password. see http://stackoverflow.com/questions/38433295/unable-to-change-password-for-root-account-ansible
-- name: set environment variables
-  shell: systemctl set-environment MYSQLD_OPTS="--skip-grant-tables"
-
-- name: start MySQL
-  service: name=mysqld state=started
-
-- name: sql query
-  command:  mysql -u root --execute="UPDATE mysql.user SET authentication_string = PASSWORD('{{ mysql_root_password }}') WHERE User = 'root' AND Host ='localhost';"  
-      
-- name: sql query flush
-  command:  mysql -u root --execute="FLUSH PRIVILEGES"
-  
-- name: Stop MySQL
-  service: name=mysqld state=stopped
-  
-- name: unset environment variables
-  shell: systemctl unset-environment MYSQLD_OPTS
+- include: password.yml
   
 - name: start MySQL
   systemd: name=mysqld enabled=yes state=started
@@ -41,6 +24,11 @@
   
 - name: copy .my.cnf file with root password credentials
   template: src=../templates/my.cnf.j2 dest=/root/.my.cnf owner=root mode=0600
+  
+  # update expared password
+- name: update root password
+  command: >
+    mysqladmin -u root password {{ mysql_root_new_password }}
       
 # fatal: [identityIQ]: FAILED! => {"changed": false, "failed": true, "msg": "unable to connect to database, check login_user and login_password are corrector /root/.my.cnf has the credentials. Exception message: (1862, 'Your password has expired. To log in you must change it using a client that supports expired passwords.')"}
 - name: delete anonymous user from MySQL server
@@ -59,8 +47,3 @@
   
 - name: delete rmp of MySQL
   file: path=/opt/mysql.rpm state=absent
-  
-  # bug: expared password
-- name: update root password
-  command: >
-    mysqladmin -u root password {{ mysql_root_new_password }}
