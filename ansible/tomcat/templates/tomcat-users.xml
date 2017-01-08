@@ -47,5 +47,5 @@
 <!-- <role rolename="manager-script"/> -->
 <!-- <role rolename="manager-jmx"/> -->
 <!-- <role rolename="manager-status"/> -->
-    <user username="vagrant" password="vagrant" roles="admin,manager,admin-gui,admin-script,manager-gui,manager-script,manager-jmx,manager-status"/>
+    <user username="{{ tomcat_user }}" password="{{ tomcat_password }}" roles="admin,manager,admin-gui,admin-script,manager-gui,manager-script,manager-jmx,manager-status"/>
 </tomcat-users>

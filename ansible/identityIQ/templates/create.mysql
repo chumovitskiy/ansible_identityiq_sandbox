@@ -9,9 +9,9 @@
 -- which causes queries to be case-insensitive.
 CREATE DATABASE IF NOT EXISTS identityiq CHARACTER SET utf8;
 
-GRANT ALL PRIVILEGES ON identityiq.* TO 'identityiq' IDENTIFIED BY 'Vagrant_17$';
-GRANT ALL PRIVILEGES ON identityiq.* TO 'identityiq'@'%' IDENTIFIED BY 'Vagrant_17$';
-GRANT ALL PRIVILEGES ON identityiq.* TO 'identityiq'@'localhost' IDENTIFIED BY 'Vagrant_17$';
+GRANT ALL PRIVILEGES ON identityiq.* TO 'identityiq' IDENTIFIED BY '{{ mysql_identityiq_password }}';
+GRANT ALL PRIVILEGES ON identityiq.* TO 'identityiq'@'%' IDENTIFIED BY '{{ mysql_identityiq_password }}';
+GRANT ALL PRIVILEGES ON identityiq.* TO 'identityiq'@'localhost' IDENTIFIED BY '{{ mysql_identityiq_password }}';
 
 USE identityiq;
 

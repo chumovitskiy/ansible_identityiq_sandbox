@@ -7,9 +7,9 @@
     - tomcat-webapps
     - tomcat-admin-webapps
 - name: configure java options
-  copy: src=../files/tomcat.conf dest=/usr/share/tomcat/conf/tomcat.conf owner=root group=tomcat
+  copy: src=../templates/tomcat.conf dest=/usr/share/tomcat/conf/tomcat.conf owner=root group=tomcat
 - name: configure administartor in tomcat
-  copy: src=../files/tomcat-users.xml dest=/usr/share/tomcat/conf/tomcat-users.xml owner=root group=tomcat
+  copy: src=../templates/tomcat-users.xml dest=/usr/share/tomcat/conf/tomcat-users.xml owner=root group=tomcat
 - name: clear examples
   file: path=/usr/share/tomcat/webapps/examples state=absent
 - name: clear sample

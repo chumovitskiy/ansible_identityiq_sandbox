@@ -38,8 +38,6 @@ except:
 
 ## tomcat
 - upgrade to ver. 8
-- change file to template
 
 ## identityIQ
-- change file to template
 - iiq import\expot in iiq
