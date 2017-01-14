@@ -35,9 +35,8 @@ except:
 - mysql 5.7
 
 # TODO:
-
-## tomcat
-- upgrade to ver. 8
-
-## identityIQ
-- iiq import\expot in iiq
+- upgrade tomcat to ver. 8
+- add import\expot configuration in iiq
+- pathcing iiq
+- add offline install
+- all variable collect in one file
