@@ -8,12 +8,14 @@
 - name: update sql-script
   template: src=../templates/create.mysql dest=/usr/share/tomcat/webapps/identityiq/WEB-INF/database/create_identityiq_tables-7.0.mysql owner=tomcat group=tomcat
   
+  # Extended Searchable Attributes in: webapps/identityiq/WEBINF/classes/sailpoint/object/IdentityExtended.hbm.xml
+  # Generate schema: ./iiq schema
+  
 - name: create database 
   shell: mysql -u root --password={{ mysql_root_password }} < /usr/share/tomcat/webapps/identityiq/WEB-INF/database/create_identityiq_tables-7.0.mysql > /usr/share/tomcat/webapps/identityiq/WEB-INF/database/mysql.out
 
 - name: update connect to database
   template: src=../templates/iiq.properties dest=/usr/share/tomcat/webapps/identityiq/WEB-INF/classes/iiq.properties owner=tomcat group=tomcat
-  # replace password in file
   
 # - name: change permissions iiq
 #   file: path=/usr/share/tomcat/webapps/identityiq/WEB-INF/bin/iiq mode="u=rwx,g=r"
@@ -23,3 +25,5 @@
 
 - name: restart tomcat
   systemd: name=tomcat state=restarted
+  
+# include patch  
